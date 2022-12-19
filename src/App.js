@@ -3,7 +3,7 @@ import { useState } from "react";
 
 // its a free account, do what thou wilt
 const apiKey = "ff4111189446487088f222006221812";
-const baseUrl = "http://api.weatherapi.com/v1/forecast.json";
+const baseUrl = "https://api.weatherapi.com/v1/forecast.json";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ function App() {
   return (
     <div className="App">
       <main className="min-h-screen bg-gradient-to-b from-indigo-600 to-indigo-900 flex justify-center items-center">
-        <div className="max-w-6xl mx-auto flex flex-col gap-16">
+        <div className="max-w-xs md:max-w-md lg:max-w-6xl mx-auto flex flex-col gap-16">
           <h1 className="text-white text-5xl font-bold text-center">
             Will it rain tomorrow?
           </h1>
