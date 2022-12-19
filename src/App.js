@@ -20,7 +20,7 @@ function App() {
     const result = await res.json();
 
     setLoading(false);
-    setData(result.forecast.forecastday[1].day);
+    setData(result);
   };
   return (
     <div className="App">
@@ -31,9 +31,34 @@ function App() {
           </h1>
           {data ? (
             <div className="flex flex-col text-center">
+              <div className="flex gap-3 items-center justify-center mb-5">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6 text-white"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                  />
+                </svg>
+
+                <span className="text-white font-semibold text-lg">
+                  {`${data.location.name}, ${data.location.region}`}
+                </span>
+              </div>
               <span className="text-white font-semibold text-2xl">
-                {data.daily_chance_of_rain > 0
-                  ? `There is a ${data.daily_chance_of_rain}% chance of rain`
+                {data.forecast.forecastday[1].day.daily_chance_of_rain > 0
+                  ? `There is a ${data.forecast.forecastday[1].day.daily_chance_of_rain}% chance of rain`
                   : "No :)"}
               </span>
               <span className="text-white/50 font-semibold text-lg mt-10">
@@ -43,34 +68,38 @@ function App() {
                 <span className="">Condition</span>
                 <div className="font-bold flex items-center gap-2">
                   <img
-                    src={data.condition.icon}
+                    src={data.forecast.forecastday[1].day.condition.icon}
                     className="w-7 h-7"
                     alt="Weather condition icon"
                   />
-                  {data.condition.text}
+                  {data.forecast.forecastday[1].day.condition.text}
                 </div>
               </div>
               <div className="w-full p-4 rounded-md bg-white/10 gap-y-2 text-white flex justify-between items-center mt-5">
                 <span className="">Low</span>
                 <span className="font-bold">
-                  {Math.round(data.mintemp_f)}
+                  {Math.round(data.forecast.forecastday[1].day.mintemp_f)}
                   <sup>o</sup>
                 </span>
               </div>
               <div className="w-full p-4 rounded-md bg-white/10 gap-y-2 text-white flex justify-between items-center mt-5">
                 <span className="">High</span>
                 <span className="font-bold">
-                  {Math.round(data.maxtemp_f)}
+                  {Math.round(data.forecast.forecastday[1].day.maxtemp_f)}
                   <sup>o</sup>
                 </span>
               </div>
               <div className="w-full p-4 rounded-md bg-white/10 gap-y-2 text-white flex justify-between items-center mt-5">
                 <span className="">Humidity</span>
-                <span className="font-bold">{data.avghumidity}%</span>
+                <span className="font-bold">
+                  {data.forecast.forecastday[1].day.avghumidity}%
+                </span>
               </div>
               <div className="w-full p-4 rounded-md bg-white/10 gap-y-2 text-white flex justify-between items-center mt-5">
                 <span className="">Precipitation (Inches)</span>
-                <span className="font-bold">{data.totalprecip_in}</span>
+                <span className="font-bold">
+                  {data.forecast.forecastday[1].day.totalprecip_in}
+                </span>
               </div>
             </div>
           ) : (
