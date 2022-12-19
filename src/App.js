@@ -12,6 +12,7 @@ function App() {
 
   const handleSubmit = async () => {
     setLoading(true);
+
     const res = await fetch(
       `${baseUrl}?key=${apiKey}&q=${input}&days=2&aqi=no&alerts=no`
     );
@@ -19,7 +20,6 @@ function App() {
     const result = await res.json();
 
     setLoading(false);
-
     setData(result.forecast.forecastday[1].day);
   };
   return (
