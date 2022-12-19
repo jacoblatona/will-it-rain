@@ -112,6 +112,7 @@ function App() {
                 placeholder="Zip Code"
                 maxLength={10}
                 onChange={(e) => setInput(e.target.value)}
+                required
               />
               <button
                 onClick={() => handleSubmit()}
