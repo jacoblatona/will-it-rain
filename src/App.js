@@ -42,7 +42,11 @@ function App() {
               <div className="w-full p-4 rounded-md bg-white/10 gap-y-2 text-white flex justify-between items-center mt-5">
                 <span className="">Condition</span>
                 <div className="font-bold flex items-center gap-2">
-                  <img src={data.condition.icon} className="w-7 h-7" />
+                  <img
+                    src={data.condition.icon}
+                    className="w-7 h-7"
+                    alt="Weather condition icon"
+                  />
                   {data.condition.text}
                 </div>
               </div>
